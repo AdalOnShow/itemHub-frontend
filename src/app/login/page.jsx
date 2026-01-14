@@ -42,10 +42,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Login to ItemHub</CardTitle>
+    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center p-6">
+      <Card className="w-full max-w-md shadow-sm">
+        <CardHeader className="p-6">
+          <CardTitle className="text-xl font-bold tracking-tight">
+            Login to ItemHub
+          </CardTitle>
           <CardDescription>
             Enter your email and password to access your account
           </CardDescription>
@@ -87,9 +89,17 @@ export default function LoginPage() {
               </Alert>
             )}
 
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Logging in..." : "Login"}
-            </Button>
+            {/* Submit Button */}
+            <div className="pt-2">
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={loading}
+                size="default"
+              >
+                {loading ? "Logging in..." : "Login"}
+              </Button>
+            </div>
           </form>
         </CardContent>
         <CardFooter className="flex justify-center border-t py-4">

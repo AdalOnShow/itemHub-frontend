@@ -65,29 +65,36 @@ export default function AddBookPage() {
   };
 
   return (
-    <div className="min-h-screen p-8 bg-background text-foreground">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen p-6 bg-background text-foreground">
+      <div className="max-w-xl mx-auto">
         {/* Back Button */}
-        <Button variant="ghost" asChild className="mb-6 -ml-4">
+        <Button
+          variant="ghost"
+          size="sm"
+          asChild
+          className="mb-4 -ml-2 text-muted-foreground"
+        >
           <Link href="/books">
-            <ChevronLeft className="mr-2 h-4 w-4" /> Back to Books
+            <ChevronLeft className="mr-1 h-3.5 w-3.5" /> Back to Books
           </Link>
         </Button>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-3xl font-bold tracking-tight">
+        <Card className="shadow-sm">
+          <CardHeader className="p-6">
+            <CardTitle className="text-xl font-bold tracking-tight">
               Add New Book
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm">
               Fill in the details below to add a new book to the catalog.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <CardContent className="p-6 pt-0">
+            <form onSubmit={handleSubmit} className="space-y-4">
               {/* Title */}
-              <div className="space-y-2">
-                <Label htmlFor="title">Title *</Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="title" className="text-sm">
+                  Title *
+                </Label>
                 <Input
                   id="title"
                   name="title"
@@ -95,13 +102,16 @@ export default function AddBookPage() {
                   value={formData.title}
                   onChange={handleChange}
                   required
-                  placeholder="The Great Gatsby"
+                  placeholder="e.g. Clean Code"
+                  className="h-9"
                 />
               </div>
 
               {/* Author */}
-              <div className="space-y-2">
-                <Label htmlFor="author">Author *</Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="author" className="text-sm">
+                  Author *
+                </Label>
                 <Input
                   id="author"
                   name="author"
@@ -109,28 +119,34 @@ export default function AddBookPage() {
                   value={formData.author}
                   onChange={handleChange}
                   required
-                  placeholder="F. Scott Fitzgerald"
+                  placeholder="e.g. Robert C. Martin"
+                  className="h-9"
                 />
               </div>
 
               {/* Description */}
-              <div className="space-y-2">
-                <Label htmlFor="description">Description *</Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="description" className="text-sm">
+                  Description *
+                </Label>
                 <Textarea
                   id="description"
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                   required
-                  rows={4}
+                  rows={3}
                   placeholder="Enter a brief summary of the book..."
+                  className="resize-none"
                 />
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-4">
                 {/* Price */}
-                <div className="space-y-2">
-                  <Label htmlFor="price">Price ($) *</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="price" className="text-sm">
+                    Price ($) *
+                  </Label>
                   <Input
                     id="price"
                     name="price"
@@ -141,12 +157,15 @@ export default function AddBookPage() {
                     onChange={handleChange}
                     required
                     placeholder="19.99"
+                    className="h-9"
                   />
                 </div>
 
                 {/* Cover Image URL */}
-                <div className="space-y-2">
-                  <Label htmlFor="coverImage">Cover Image URL</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="coverImage" className="text-sm">
+                    Cover Image URL
+                  </Label>
                   <Input
                     id="coverImage"
                     name="coverImage"
@@ -154,29 +173,31 @@ export default function AddBookPage() {
                     value={formData.coverImage}
                     onChange={handleChange}
                     placeholder="https://example.com/image.jpg"
+                    className="h-9"
                   />
                 </div>
               </div>
 
-              <p className="text-xs text-muted-foreground mt-1">
-                * Required fields. If cover image URL is empty, a default
-                placeholder will be used.
+              <p className="text-[11px] text-muted-foreground mt-1">
+                * Required fields. Default placeholder if cover URL is empty.
               </p>
 
               {/* Error Message */}
               {error && (
-                <Alert variant="destructive">
-                  <AlertDescription>{error}</AlertDescription>
+                <Alert variant="destructive" className="py-2 px-3">
+                  <AlertDescription className="text-xs">
+                    {error}
+                  </AlertDescription>
                 </Alert>
               )}
 
               {/* Submit Button */}
-              <div className="pt-4">
+              <div className="pt-2">
                 <Button
                   type="submit"
                   className="w-full"
                   disabled={loading}
-                  size="lg"
+                  size="default"
                 >
                   {loading ? "Adding Book..." : "Add Book"}
                 </Button>

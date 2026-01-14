@@ -1,38 +1,38 @@
-'use client';
+"use client";
 
-import { useState, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
-import { addBook } from '@/lib/api';
-import Link from 'next/link';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { addBook } from "@/lib/api";
+import Link from "next/link";
 
 /**
  * Add Book Page (PROTECTED)
  * Allows authenticated users to add new books
- * Protected by middleware - redirects to /login if not authenticated
+ * Protected by proxy - redirects to /login if not authenticated
  */
 export default function AddBookPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  
+  const [error, setError] = useState("");
+
   const [formData, setFormData] = useState({
-    title: '',
-    author: '',
-    description: '',
-    price: '',
-    coverImage: '',
+    title: "",
+    author: "",
+    description: "",
+    price: "",
+    coverImage: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     try {
@@ -46,9 +46,9 @@ export default function AddBookPage() {
       });
 
       // Redirect to books page on success
-      router.push('/books');
+      router.push("/books");
     } catch (err) {
-      setError('Failed to add book. Please try again.');
+      setError("Failed to add book. Please try again.");
       setLoading(false);
       console.error(err);
     }
@@ -58,7 +58,10 @@ export default function AddBookPage() {
     <div className="min-h-screen p-8">
       <div className="max-w-2xl mx-auto">
         {/* Back Button */}
-        <Link href="/books" className="inline-block mb-6 text-blue-600 hover:underline">
+        <Link
+          href="/books"
+          className="inline-block mb-6 text-blue-600 hover:underline"
+        >
           ← Back to Books
         </Link>
 
@@ -156,9 +159,7 @@ export default function AddBookPage() {
 
           {/* Error Message */}
           {error && (
-            <div className="p-3 bg-red-100 text-red-700 rounded">
-              {error}
-            </div>
+            <div className="p-3 bg-red-100 text-red-700 rounded">{error}</div>
           )}
 
           {/* Submit Button */}
@@ -167,7 +168,7 @@ export default function AddBookPage() {
             disabled={loading}
             className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
           >
-            {loading ? 'Adding Book...' : 'Add Book'}
+            {loading ? "Adding Book..." : "Add Book"}
           </button>
         </form>
       </div>

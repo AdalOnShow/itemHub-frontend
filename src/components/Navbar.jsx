@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { deleteAuthCookie, isAuthenticated } from '@/lib/auth';
-import { useEffect, useState } from 'react';
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { deleteAuthCookie, isAuthenticated } from "@/lib/auth";
+import { useState } from "react";
 
 /**
  * Navbar Component
@@ -11,15 +11,11 @@ import { useEffect, useState } from 'react';
  */
 export default function Navbar() {
   const router = useRouter();
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    setAuthenticated(isAuthenticated());
-  }, []);
+  const [authenticated, setAuthenticated] = useState(() => isAuthenticated());
 
   const handleLogout = () => {
     deleteAuthCookie();
-    router.push('/login');
+    router.push("/login");
     router.refresh();
   };
 
@@ -34,7 +30,7 @@ export default function Navbar() {
           <Link href="/books" className="hover:underline">
             Books
           </Link>
-          
+
           {authenticated ? (
             <>
               <Link href="/add-book" className="hover:underline">
@@ -48,7 +44,10 @@ export default function Navbar() {
               </button>
             </>
           ) : (
-            <Link href="/login" className="px-3 py-1 bg-blue-600 text-white rounded text-sm">
+            <Link
+              href="/login"
+              className="px-3 py-1 bg-blue-600 text-white rounded text-sm"
+            >
               Login
             </Link>
           )}

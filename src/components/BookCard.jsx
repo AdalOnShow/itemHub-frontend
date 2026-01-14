@@ -1,21 +1,19 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Book } from '@/lib/api';
+import Link from "next/link";
+import Image from "next/image";
 
 /**
  * BookCard Component
  * Displays a single book in card format
  * Used in the books listing page
  */
-interface BookCardProps {
-  book: Book;
-}
-
-export default function BookCard({ book }: BookCardProps) {
+export default function BookCard({ book }) {
   return (
-    <Link href={`/books/${book.id}`} className="block border rounded overflow-hidden hover:shadow-lg transition-shadow">
+    <Link
+      href={`/books/${book.id}`}
+      className="block border rounded overflow-hidden hover:shadow-lg transition-shadow"
+    >
       {/* Book Cover */}
-      <div className="relative w-full aspect-[3/4] bg-gray-200">
+      <div className="relative w-full aspect-3/4 bg-gray-200">
         <Image
           src={book.coverImage}
           alt={book.title}

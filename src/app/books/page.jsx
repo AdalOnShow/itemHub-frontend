@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { fetchBooks } from '@/lib/api';
-import BookCard from '@/components/BookCard';
+import Link from "next/link";
+import { fetchBooks } from "@/lib/api";
+import BookCard from "@/components/BookCard";
 
 /**
  * Books Listing Page (Public)
@@ -13,7 +13,7 @@ export default async function BooksPage() {
   try {
     books = await fetchBooks();
   } catch (e) {
-    error = 'Failed to load books. Make sure the backend server is running.';
+    error = "Failed to load books. Make sure the backend server is running.";
     console.error(e);
   }
 
@@ -27,7 +27,10 @@ export default async function BooksPage() {
             <Link href="/" className="px-4 py-2 border rounded">
               Home
             </Link>
-            <Link href="/add-book" className="px-4 py-2 bg-blue-600 text-white rounded">
+            <Link
+              href="/add-book"
+              className="px-4 py-2 bg-blue-600 text-white rounded"
+            >
               Add Book
             </Link>
           </div>
@@ -48,9 +51,7 @@ export default async function BooksPage() {
             ))}
           </div>
         ) : (
-          !error && (
-            <p className="text-gray-500">No books available.</p>
-          )
+          !error && <p className="text-gray-500">No books available.</p>
         )}
       </div>
     </div>

@@ -15,7 +15,7 @@ const AUTH_COOKIE_NAME = 'auth-token';
  * Validate login credentials
  * Returns true if credentials match mock data
  */
-export function validateCredentials(email: string, password: string): boolean {
+export function validateCredentials(email, password) {
   return email === MOCK_CREDENTIALS.email && password === MOCK_CREDENTIALS.password;
 }
 
@@ -23,7 +23,7 @@ export function validateCredentials(email: string, password: string): boolean {
  * Set authentication cookie
  * Called after successful login
  */
-export function setAuthCookie(): void {
+export function setAuthCookie() {
   // Create a simple auth token (in production, use JWT or session token)
   const token = 'mock-auth-token-' + Date.now();
   
@@ -35,7 +35,7 @@ export function setAuthCookie(): void {
  * Get authentication cookie value
  * Returns null if not authenticated
  */
-export function getAuthCookie(): string | null {
+export function getAuthCookie() {
   if (typeof document === 'undefined') return null;
   
   const cookies = document.cookie.split(';');
@@ -50,7 +50,7 @@ export function getAuthCookie(): string | null {
  * Delete authentication cookie
  * Called on logout
  */
-export function deleteAuthCookie(): void {
+export function deleteAuthCookie() {
   document.cookie = `${AUTH_COOKIE_NAME}=; path=/; max-age=0`;
 }
 
@@ -58,6 +58,6 @@ export function deleteAuthCookie(): void {
  * Check if user is authenticated
  * Client-side check
  */
-export function isAuthenticated(): boolean {
+export function isAuthenticated() {
   return getAuthCookie() !== null;
 }

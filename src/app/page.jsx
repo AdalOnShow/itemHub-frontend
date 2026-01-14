@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 /**
  * Landing Page - 7 placeholder sections
@@ -11,7 +11,10 @@ export default function HomePage() {
       <section className="p-8 border-b">
         <h1 className="text-4xl font-bold mb-4">ItemHub</h1>
         <p className="text-lg mb-4">Book Listing & Management Platform</p>
-        <Link href="/books" className="px-4 py-2 bg-blue-600 text-white rounded">
+        <Link
+          href="/books"
+          className="px-4 py-2 bg-blue-600 text-white rounded"
+        >
           Browse Books
         </Link>
       </section>
@@ -41,20 +44,25 @@ export default function HomePage() {
       {/* Section 5: Testimonials */}
       <section className="p-8 border-b">
         <h2 className="text-2xl font-bold mb-4">Testimonials</h2>
-        <p>"Great platform for managing books!" - User</p>
+        <p>&quot;Great platform for managing books!&quot; - User</p>
       </section>
 
       {/* Section 6: Call to Action */}
       <section className="p-8 border-b">
         <h2 className="text-2xl font-bold mb-4">Get Started</h2>
-        <Link href="/login" className="px-4 py-2 bg-green-600 text-white rounded">
+        <Link
+          href="/login"
+          className="px-4 py-2 bg-green-600 text-white rounded"
+        >
           Login
         </Link>
       </section>
 
       {/* Section 7: Footer */}
       <section className="p-8">
-        <p className="text-sm text-gray-600">© 2026 ItemHub. All rights reserved.</p>
+        <p className="text-sm text-gray-600">
+          © 2026 ItemHub. All rights reserved.
+        </p>
       </section>
     </div>
   );

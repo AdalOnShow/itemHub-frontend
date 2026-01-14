@@ -1,12 +1,11 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
 
 /**
- * Middleware for route protection
+ * Proxy for route protection (Next.js 16 uses 'proxy' instead of 'middleware')
  * - Protects /add-book route (requires authentication)
  * - Redirects authenticated users away from /login
  */
-export function middleware(request: NextRequest) {
+export function proxy(request) {
   const { pathname } = request.nextUrl;
   
   // Check if user is authenticated by looking for auth cookie
@@ -33,7 +32,7 @@ export function middleware(request: NextRequest) {
 }
 
 /**
- * Configure which routes this middleware should run on
+ * Configure which routes this proxy should run on
  */
 export const config = {
   matcher: [

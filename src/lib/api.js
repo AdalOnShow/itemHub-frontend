@@ -5,19 +5,10 @@
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
-export interface Book {
-  id: string;
-  title: string;
-  author: string;
-  description: string;
-  price: number;
-  coverImage: string;
-}
-
 /**
  * Fetch all books from backend
  */
-export async function fetchBooks(): Promise<Book[]> {
+export async function fetchBooks() {
   try {
     const response = await fetch(`${API_BASE_URL}/books`);
     
@@ -35,7 +26,7 @@ export async function fetchBooks(): Promise<Book[]> {
 /**
  * Fetch single book by ID from backend
  */
-export async function fetchBookById(id: string): Promise<Book> {
+export async function fetchBookById(id) {
   try {
     const response = await fetch(`${API_BASE_URL}/books/${id}`);
     
@@ -56,7 +47,7 @@ export async function fetchBookById(id: string): Promise<Book> {
 /**
  * Add new book to backend
  */
-export async function addBook(bookData: Omit<Book, 'id'>): Promise<Book> {
+export async function addBook(bookData) {
   try {
     const response = await fetch(`${API_BASE_URL}/books`, {
       method: 'POST',

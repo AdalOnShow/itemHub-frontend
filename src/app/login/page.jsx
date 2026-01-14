@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
-import { validateCredentials, setAuthCookie } from '@/lib/auth';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { validateCredentials, setAuthCookie } from "@/lib/auth";
 
 /**
  * Login Page
@@ -12,25 +12,25 @@ import { validateCredentials, setAuthCookie } from '@/lib/auth';
  */
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     // Validate credentials
     if (validateCredentials(email, password)) {
       // Set auth cookie
       setAuthCookie();
-      
+
       // Redirect to books page
-      router.push('/books');
+      router.push("/books");
     } else {
-      setError('Invalid email or password');
+      setError("Invalid email or password");
       setLoading(false);
     }
   };
@@ -39,7 +39,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md border rounded p-8">
         <h1 className="text-2xl font-bold mb-6">Login to ItemHub</h1>
-        
+
         {/* Hint for testing */}
         <div className="mb-4 p-3 bg-gray-100 rounded text-sm">
           <p className="font-semibold">Test Credentials:</p>
@@ -82,9 +82,7 @@ export default function LoginPage() {
 
           {/* Error Message */}
           {error && (
-            <div className="p-3 bg-red-100 text-red-700 rounded">
-              {error}
-            </div>
+            <div className="p-3 bg-red-100 text-red-700 rounded">{error}</div>
           )}
 
           {/* Submit Button */}
@@ -93,7 +91,7 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
       </div>

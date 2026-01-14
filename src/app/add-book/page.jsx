@@ -4,11 +4,23 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { addBook } from "@/lib/api";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { ChevronLeft } from "lucide-react";
 
 /**
  * Add Book Page (PROTECTED)
  * Allows authenticated users to add new books
- * Protected by proxy - redirects to /login if not authenticated
  */
 export default function AddBookPage() {
   const router = useRouter();
@@ -24,10 +36,11 @@ export default function AddBookPage() {
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -36,7 +49,6 @@ export default function AddBookPage() {
     setLoading(true);
 
     try {
-      // Add book via API
       await addBook({
         title: formData.title,
         author: formData.author,
@@ -44,8 +56,6 @@ export default function AddBookPage() {
         price: parseFloat(formData.price),
         coverImage: formData.coverImage || undefined,
       });
-
-      // Redirect to books page on success
       router.push("/books");
     } catch (err) {
       setError("Failed to add book. Please try again.");
@@ -55,122 +65,125 @@ export default function AddBookPage() {
   };
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen p-8 bg-background text-foreground">
       <div className="max-w-2xl mx-auto">
         {/* Back Button */}
-        <Link
-          href="/books"
-          className="inline-block mb-6 text-blue-600 hover:underline"
-        >
-          ← Back to Books
-        </Link>
+        <Button variant="ghost" asChild className="mb-6 -ml-4">
+          <Link href="/books">
+            <ChevronLeft className="mr-2 h-4 w-4" /> Back to Books
+          </Link>
+        </Button>
 
-        <h1 className="text-3xl font-bold mb-6">Add New Book</h1>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-3xl font-bold tracking-tight">
+              Add New Book
+            </CardTitle>
+            <CardDescription>
+              Fill in the details below to add a new book to the catalog.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Title */}
+              <div className="space-y-2">
+                <Label htmlFor="title">Title *</Label>
+                <Input
+                  id="title"
+                  name="title"
+                  type="text"
+                  value={formData.title}
+                  onChange={handleChange}
+                  required
+                  placeholder="The Great Gatsby"
+                />
+              </div>
 
-        <form onSubmit={handleSubmit} className="border rounded p-6 space-y-4">
-          {/* Title */}
-          <div>
-            <label htmlFor="title" className="block mb-1 font-medium">
-              Title *
-            </label>
-            <input
-              id="title"
-              name="title"
-              type="text"
-              value={formData.title}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border rounded"
-              placeholder="Enter book title"
-            />
-          </div>
+              {/* Author */}
+              <div className="space-y-2">
+                <Label htmlFor="author">Author *</Label>
+                <Input
+                  id="author"
+                  name="author"
+                  type="text"
+                  value={formData.author}
+                  onChange={handleChange}
+                  required
+                  placeholder="F. Scott Fitzgerald"
+                />
+              </div>
 
-          {/* Author */}
-          <div>
-            <label htmlFor="author" className="block mb-1 font-medium">
-              Author *
-            </label>
-            <input
-              id="author"
-              name="author"
-              type="text"
-              value={formData.author}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border rounded"
-              placeholder="Enter author name"
-            />
-          </div>
+              {/* Description */}
+              <div className="space-y-2">
+                <Label htmlFor="description">Description *</Label>
+                <Textarea
+                  id="description"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  required
+                  rows={4}
+                  placeholder="Enter a brief summary of the book..."
+                />
+              </div>
 
-          {/* Description */}
-          <div>
-            <label htmlFor="description" className="block mb-1 font-medium">
-              Description *
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              required
-              rows={4}
-              className="w-full px-3 py-2 border rounded"
-              placeholder="Enter book description"
-            />
-          </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Price */}
+                <div className="space-y-2">
+                  <Label htmlFor="price">Price ($) *</Label>
+                  <Input
+                    id="price"
+                    name="price"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={formData.price}
+                    onChange={handleChange}
+                    required
+                    placeholder="19.99"
+                  />
+                </div>
 
-          {/* Price */}
-          <div>
-            <label htmlFor="price" className="block mb-1 font-medium">
-              Price ($) *
-            </label>
-            <input
-              id="price"
-              name="price"
-              type="number"
-              step="0.01"
-              min="0"
-              value={formData.price}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border rounded"
-              placeholder="0.00"
-            />
-          </div>
+                {/* Cover Image URL */}
+                <div className="space-y-2">
+                  <Label htmlFor="coverImage">Cover Image URL</Label>
+                  <Input
+                    id="coverImage"
+                    name="coverImage"
+                    type="url"
+                    value={formData.coverImage}
+                    onChange={handleChange}
+                    placeholder="https://example.com/image.jpg"
+                  />
+                </div>
+              </div>
 
-          {/* Cover Image URL */}
-          <div>
-            <label htmlFor="coverImage" className="block mb-1 font-medium">
-              Cover Image URL (optional)
-            </label>
-            <input
-              id="coverImage"
-              name="coverImage"
-              type="url"
-              value={formData.coverImage}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded"
-              placeholder="https://example.com/image.jpg"
-            />
-            <p className="text-sm text-gray-500 mt-1">
-              Leave empty for default placeholder image
-            </p>
-          </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                * Required fields. If cover image URL is empty, a default
+                placeholder will be used.
+              </p>
 
-          {/* Error Message */}
-          {error && (
-            <div className="p-3 bg-red-100 text-red-700 rounded">{error}</div>
-          )}
+              {/* Error Message */}
+              {error && (
+                <Alert variant="destructive">
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
-          >
-            {loading ? "Adding Book..." : "Add Book"}
-          </button>
-        </form>
+              {/* Submit Button */}
+              <div className="pt-4">
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={loading}
+                  size="lg"
+                >
+                  {loading ? "Adding Book..." : "Add Book"}
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

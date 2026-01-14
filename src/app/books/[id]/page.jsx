@@ -2,6 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchBookById } from "@/lib/api";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { ChevronLeft } from "lucide-react";
 
 /**
  * Book Details Page (Public)
@@ -19,55 +23,73 @@ export default async function BookDetailsPage({ params }) {
   }
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen p-8 bg-background">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
-        <Link
-          href="/books"
-          className="inline-block mb-6 text-blue-600 hover:underline"
-        >
-          ← Back to Books
-        </Link>
+        <Button variant="ghost" asChild className="mb-6 -ml-4">
+          <Link href="/books">
+            <ChevronLeft className="mr-2 h-4 w-4" /> Back to Books
+          </Link>
+        </Button>
 
         {/* Book Details */}
-        <div className="border rounded p-6">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Book Cover */}
-            <div>
-              <div className="relative w-full aspect-3/4 bg-gray-200 rounded overflow-hidden">
-                <Image
-                  src={book.coverImage}
-                  alt={book.title}
-                  fill
-                  className="object-cover"
-                />
+        <Card>
+          <CardContent className="p-0 md:p-6">
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Book Cover */}
+              <div className="p-4 md:p-0">
+                <div className="relative w-full aspect-3/4 bg-muted rounded-lg overflow-hidden shadow-md">
+                  <Image
+                    src={book.coverImage}
+                    alt={book.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* Book Info */}
+              <div className="p-6 md:p-0 flex flex-col justify-center">
+                <div className="space-y-4">
+                  <div>
+                    <h1 className="text-4xl font-bold tracking-tight mb-2">
+                      {book.title}
+                    </h1>
+                    <p className="text-xl text-muted-foreground">
+                      by {book.author}
+                    </p>
+                  </div>
+
+                  <div>
+                    <Badge
+                      variant="secondary"
+                      className="text-xl px-3 py-1 font-bold text-primary"
+                    >
+                      ${book.price.toFixed(2)}
+                    </Badge>
+                  </div>
+
+                  <div className="pt-4 border-t">
+                    <h2 className="text-lg font-semibold mb-2">Description</h2>
+                    <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                      {book.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 mt-auto text-xs text-muted-foreground flex items-center gap-2">
+                    <span className="font-semibold px-2 py-0.5 bg-muted rounded uppercase tracking-wider">
+                      Book ID
+                    </span>
+                    <code className="bg-muted px-2 py-0.5 rounded text-primary">
+                      {book.id}
+                    </code>
+                  </div>
+                </div>
               </div>
             </div>
-
-            {/* Book Info */}
-            <div>
-              <h1 className="text-3xl font-bold mb-2">{book.title}</h1>
-              <p className="text-xl text-gray-600 mb-4">by {book.author}</p>
-
-              <div className="mb-6">
-                <span className="text-2xl font-bold text-green-600">
-                  ${book.price.toFixed(2)}
-                </span>
-              </div>
-
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold mb-2">Description</h2>
-                <p className="text-gray-700">{book.description}</p>
-              </div>
-
-              <div className="space-y-2 text-sm text-gray-600">
-                <p>
-                  <strong>Book ID:</strong> {book.id}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

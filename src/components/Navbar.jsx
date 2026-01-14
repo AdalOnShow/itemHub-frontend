@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { deleteAuthCookie, isAuthenticated } from "@/lib/auth";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 /**
  * Navbar Component
- * Simple navigation with logout functionality
+ * Clean navigation with shadcn Button components
  */
 export default function Navbar() {
   const router = useRouter();
@@ -20,36 +21,33 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="border-b p-4">
-      <div className="max-w-6xl mx-auto flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold">
+    <nav className="border-b bg-background">
+      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <Link
+          href="/"
+          className="text-xl font-bold hover:text-primary transition-colors"
+        >
           ItemHub
         </Link>
 
-        <div className="flex gap-4 items-center">
-          <Link href="/books" className="hover:underline">
-            Books
-          </Link>
+        <div className="flex gap-3 items-center">
+          <Button variant="ghost" asChild>
+            <Link href="/books">Books</Link>
+          </Button>
 
           {authenticated ? (
             <>
-              <Link href="/add-book" className="hover:underline">
-                Add Book
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="px-3 py-1 bg-red-600 text-white rounded text-sm"
-              >
+              <Button variant="ghost" asChild>
+                <Link href="/add-book">Add Book</Link>
+              </Button>
+              <Button variant="destructive" size="sm" onClick={handleLogout}>
                 Logout
-              </button>
+              </Button>
             </>
           ) : (
-            <Link
-              href="/login"
-              className="px-3 py-1 bg-blue-600 text-white rounded text-sm"
-            >
-              Login
-            </Link>
+            <Button asChild>
+              <Link href="/login">Login</Link>
+            </Button>
           )}
         </div>
       </div>

@@ -3,12 +3,22 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { validateCredentials, setAuthCookie } from "@/lib/auth";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 /**
  * Login Page
  * Mock authentication with hardcoded credentials
- * Email: admin@example.com
- * Password: 123456
  */
 export default function LoginPage() {
   const router = useRouter();
@@ -22,12 +32,8 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
-    // Validate credentials
     if (validateCredentials(email, password)) {
-      // Set auth cookie
       setAuthCookie();
-
-      // Redirect to books page
       router.push("/books");
     } else {
       setError("Invalid email or password");
@@ -36,65 +42,62 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-md border rounded p-8">
-        <h1 className="text-2xl font-bold mb-6">Login to ItemHub</h1>
-
-        {/* Hint for testing */}
-        <div className="mb-4 p-3 bg-gray-100 rounded text-sm">
-          <p className="font-semibold">Test Credentials:</p>
-          <p>Email: admin@example.com</p>
-          <p>Password: 123456</p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email Input */}
-          <div>
-            <label htmlFor="email" className="block mb-1 font-medium">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full px-3 py-2 border rounded"
-              placeholder="admin@example.com"
-            />
+    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold">Login to ItemHub</CardTitle>
+          <CardDescription>
+            Enter your email and password to access your account
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="mb-6 p-3 bg-muted rounded-md text-sm">
+            <p className="font-semibold mb-1">Test Credentials:</p>
+            <p className="text-muted-foreground">Email: admin@example.com</p>
+            <p className="text-muted-foreground">Password: 123456</p>
           </div>
 
-          {/* Password Input */}
-          <div>
-            <label htmlFor="password" className="block mb-1 font-medium">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full px-3 py-2 border rounded"
-              placeholder="123456"
-            />
-          </div>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="admin@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
 
-          {/* Error Message */}
-          {error && (
-            <div className="p-3 bg-red-100 text-red-700 rounded">{error}</div>
-          )}
+            {error && (
+              <Alert variant="destructive">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
-          >
-            {loading ? "Logging in..." : "Login"}
-          </button>
-        </form>
-      </div>
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </Button>
+          </form>
+        </CardContent>
+        <CardFooter className="flex justify-center border-t py-4">
+          <p className="text-sm text-muted-foreground">
+            Don&apos;t have an account? Contact an administrator.
+          </p>
+        </CardFooter>
+      </Card>
     </div>
   );
 }

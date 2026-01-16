@@ -102,13 +102,51 @@ export default function HomePage() {
       </section>
 
       {/* Section 3: How It Works */}
-      <section className="py-10 px-4 bg-muted/20">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-xl font-bold mb-3">How It Works</h2>
-          <p className="text-muted-foreground text-base">
-            Simple book management system with secure authentication. Browse
-            books as a guest or login to add your own.
-          </p>
+      <section className="py-16 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+              How It Works
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Get started in three simple steps
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Step 1 */}
+            <div className="relative flex flex-col items-center text-center">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold text-lg">
+                1
+              </div>
+              <h3 className="text-base font-semibold mb-2">Browse Books</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Explore our collection of books. No account needed to view the catalog.
+              </p>
+            </div>
+            
+            {/* Step 2 */}
+            <div className="relative flex flex-col items-center text-center">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold text-lg">
+                2
+              </div>
+              <h3 className="text-base font-semibold mb-2">View Details</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Click any book to see complete information and descriptions.
+              </p>
+            </div>
+            
+            {/* Step 3 */}
+            <div className="relative flex flex-col items-center text-center">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold text-lg">
+                3
+              </div>
+              <h3 className="text-base font-semibold mb-2">Add Books</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Login to contribute and add new books to the collection.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

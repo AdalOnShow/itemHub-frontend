@@ -15,15 +15,29 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Section 1: Hero */}
-      <section className="py-12 px-4 text-center bg-muted/30">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold mb-3 tracking-tight">ItemHub</h1>
-          <p className="text-lg text-muted-foreground mb-6">
-            Book Listing & Management Platform
+      <section className="relative py-16 px-4 overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Headline */}
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+            Your Digital{" "}
+            <span className="text-primary">Book Collection</span>
+          </h1>
+          
+          {/* Supporting Text */}
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            Discover, manage, and organize your favorite books in one place. 
+            Start building your personal library today.
           </p>
-          <Button size="default" asChild>
-            <Link href="/books">Browse Books</Link>
-          </Button>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <Button size="default" asChild>
+              <Link href="/books">Browse Books</Link>
+            </Button>
+            <Button variant="outline" size="default" asChild>
+              <Link href="/add-book">Add Book</Link>
+            </Button>
+          </div>
         </div>
       </section>
 

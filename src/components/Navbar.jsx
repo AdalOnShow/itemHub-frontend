@@ -14,11 +14,7 @@ import { cn } from "@/lib/utils";
 export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    setAuthenticated(isAuthenticated());
-  }, []);
+  const [authenticated, setAuthenticated] = useState(() => isAuthenticated());
 
   const handleLogout = () => {
     deleteAuthCookie();

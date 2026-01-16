@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import BookCard from "@/components/BookCard";
 
 /**
  * Landing Page - 7 sections with modern design
@@ -162,7 +163,7 @@ export default function HomePage() {
               <p className="text-base text-muted-foreground leading-relaxed mb-6">
                 Built for book lovers and collectors, ItemHub provides a 
                 streamlined experience for managing your digital library. 
-                Whether you're browsing or building your collection, we've 
+                Whether you&apos;re browsing or building your collection, we&apos;ve 
                 made it simple and enjoyable.
               </p>
               <Button variant="outline" size="default" asChild>
@@ -180,7 +181,7 @@ export default function HomePage() {
                   <div>
                     <h3 className="font-semibold text-sm mb-1">Intuitive Interface</h3>
                     <p className="text-sm text-muted-foreground">
-                      Clean design that's easy to navigate for everyone
+                      Clean design that&apos;s easy to navigate for everyone
                     </p>
                   </div>
                 </CardContent>
@@ -218,7 +219,70 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section 5: Testimonials */}
+      {/* Section 5: Book Preview */}
+      <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+              Featured Books
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Explore our curated collection
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <BookCard
+              book={{
+                id: 1,
+                title: "The Great Gatsby",
+                author: "F. Scott Fitzgerald",
+                description: "A classic American novel set in the Jazz Age, exploring themes of decadence, idealism, and social upheaval.",
+                price: 12.99,
+                coverImage: "https://covers.openlibrary.org/b/id/7883743-L.jpg",
+              }}
+            />
+            <BookCard
+              book={{
+                id: 2,
+                title: "To Kill a Mockingbird",
+                author: "Harper Lee",
+                description: "A gripping tale of racial injustice and childhood innocence in the Deep South during the 1930s.",
+                price: 14.99,
+                coverImage: "https://covers.openlibrary.org/b/id/8228691-L.jpg",
+              }}
+            />
+            <BookCard
+              book={{
+                id: 3,
+                title: "1984",
+                author: "George Orwell",
+                description: "A dystopian social science fiction novel exploring themes of totalitarianism and surveillance.",
+                price: 13.99,
+                coverImage: "https://covers.openlibrary.org/b/id/7222246-L.jpg",
+              }}
+            />
+            <BookCard
+              book={{
+                id: 4,
+                title: "Pride and Prejudice",
+                author: "Jane Austen",
+                description: "A romantic novel of manners that critiques the British landed gentry at the end of the 18th century.",
+                price: 11.99,
+                coverImage: "https://covers.openlibrary.org/b/id/8529558-L.jpg",
+              }}
+            />
+          </div>
+
+          <div className="mt-8 text-center">
+            <Button variant="outline" size="default" asChild>
+              <Link href="/books">View All Books</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 6: Testimonials */}
       <section className="py-10 px-4 bg-muted/20">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-xl font-bold mb-6">Testimonials</h2>
@@ -235,7 +299,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section 6: Call to Action */}
+      {/* Section 7: Call to Action */}
       <section className="py-10 px-4 bg-background">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-3">Get Started</h2>

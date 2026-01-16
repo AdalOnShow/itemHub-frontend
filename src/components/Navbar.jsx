@@ -1,17 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { deleteAuthCookie, isAuthenticated } from "@/lib/auth";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 /**
  * Navbar Component
- * Clean navigation with shadcn Button components
+ * Modern, clean navigation with active link states
  */
 export default function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -25,40 +27,67 @@ export default function Navbar() {
     router.refresh();
   };
 
+  const isActive = (path) => {
+    if (path === "/") return pathname === "/";
+    return pathname.startsWith(path);
+  };
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/books", label: "Books" },
+    { href: "/add-book", label: "Add Book" },
+  ];
+
   return (
-    <nav className="border-b bg-background sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        <div className="flex gap-6 items-center">
-          <Link
-            href="/"
-            className="text-lg font-bold hover:text-primary transition-colors"
-          >
-            ItemHub
-          </Link>
+    <nav className="border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex h-14 items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center gap-8">
+            <Link
+              href="/"
+              className="text-base font-semibold tracking-tight hover:text-primary transition-colors"
+            >
+              ItemHub
+            </Link>
 
-          <div className="hidden md:flex gap-1 items-center">
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/">Home</Link>
-            </Button>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/books">Books</Link>
-            </Button>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/add-book">Add Book</Link>
-            </Button>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
+                    "hover:bg-muted hover:text-foreground",
+                    isActive(link.href)
+                      ? "bg-muted text-foreground"
+                      : "text-muted-foreground"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
           </div>
-        </div>
 
-        <div className="flex gap-2 items-center">
-          {authenticated ? (
-            <Button variant="destructive" size="sm" onClick={handleLogout}>
-              Logout
-            </Button>
-          ) : (
-            <Button size="sm" asChild>
-              <Link href="/login">Login</Link>
-            </Button>
-          )}
+          {/* Auth Button */}
+          <div className="flex items-center">
+            {authenticated ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleLogout}
+                className="text-sm"
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button size="sm" asChild className="text-sm h-8">
+                <Link href="/login">Login</Link>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </nav>

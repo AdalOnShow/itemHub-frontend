@@ -151,27 +151,70 @@ export default function HomePage() {
       </section>
 
       {/* Section 4: Benefits */}
-      <section className="py-10 px-4 bg-background">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-xl font-bold mb-6 text-center">Benefits</h2>
-          <Card className="shadow-sm">
-            <CardContent className="p-4">
-              <ul className="space-y-2 text-muted-foreground text-sm">
-                <li className="flex items-start">
-                  <span className="mr-2 text-primary">✓</span>
-                  <span>Easy to use with clean, intuitive interface</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-primary">✓</span>
-                  <span>Secure authentication for protected actions</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-primary">✓</span>
-                  <span>Fast and responsive design</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left: Text Content */}
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
+                Why Choose ItemHub?
+              </h2>
+              <p className="text-base text-muted-foreground leading-relaxed mb-6">
+                Built for book lovers and collectors, ItemHub provides a 
+                streamlined experience for managing your digital library. 
+                Whether you're browsing or building your collection, we've 
+                made it simple and enjoyable.
+              </p>
+              <Button variant="outline" size="default" asChild>
+                <Link href="/books">Explore Now</Link>
+              </Button>
+            </div>
+
+            {/* Right: Benefits List */}
+            <div className="space-y-3">
+              <Card className="border-border/50">
+                <CardContent className="p-4 flex items-start gap-3">
+                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    ✓
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Intuitive Interface</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Clean design that's easy to navigate for everyone
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-border/50">
+                <CardContent className="p-4 flex items-start gap-3">
+                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    ✓
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Secure & Protected</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Authentication system keeps your data safe
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-border/50">
+                <CardContent className="p-4 flex items-start gap-3">
+                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    ✓
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Fast & Responsive</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Built with modern tech for optimal performance
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </section>
 

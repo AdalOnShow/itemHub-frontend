@@ -6,6 +6,7 @@ import { deleteAuthCookie, isAuthenticated } from "@/lib/auth";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 /**
  * Navbar Component
@@ -67,8 +68,9 @@ export default function Navbar() {
             </nav>
           </div>
 
-          {/* Auth Button */}
-          <div className="flex items-center">
+          {/* Theme Toggle and Auth Button */}
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
             {authenticated ? (
               <Button
                 variant="ghost"

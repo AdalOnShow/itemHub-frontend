@@ -12,7 +12,7 @@ export default function BookCard({ book }) {
     <Link href={`/books/${book.id}`} className="block group">
       <Card className="h-full flex flex-col overflow-hidden border-border/50 hover:border-border transition-all duration-200 hover:shadow-sm">
         {/* Book Cover */}
-        <div className="relative w-full aspect-[3/4] bg-muted overflow-hidden">
+        <div className="relative w-full aspect-3/4 bg-muted overflow-hidden">
           <Image
             src={book.coverImage}
             alt={book.title}
@@ -28,17 +28,15 @@ export default function BookCard({ book }) {
           <h3 className="font-semibold text-sm leading-tight line-clamp-2 group-hover:text-primary transition-colors">
             {book.title}
           </h3>
-          
+
           {/* Author */}
-          <p className="text-xs text-muted-foreground">
-            {book.author}
-          </p>
-          
+          <p className="text-xs text-muted-foreground">{book.author}</p>
+
           {/* Description */}
           <p className="text-xs text-muted-foreground/80 line-clamp-2 leading-relaxed flex-1">
             {book.description}
           </p>
-          
+
           {/* Price */}
           <div className="pt-1">
             <Badge variant="secondary" className="font-semibold text-xs">

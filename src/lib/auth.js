@@ -5,18 +5,20 @@
 
 // Mock credentials
 const MOCK_CREDENTIALS = {
-  email: 'admin@example.com',
-  password: '123456'
+  email: "admin@example.com",
+  password: "123456",
 };
 
-const AUTH_COOKIE_NAME = 'auth-token';
+const AUTH_COOKIE_NAME = "auth-token";
 
 /**
  * Validate login credentials
  * Returns true if credentials match mock data
  */
 export function validateCredentials(email, password) {
-  return email === MOCK_CREDENTIALS.email && password === MOCK_CREDENTIALS.password;
+  return (
+    email === MOCK_CREDENTIALS.email && password === MOCK_CREDENTIALS.password
+  );
 }
 
 /**
@@ -25,10 +27,12 @@ export function validateCredentials(email, password) {
  */
 export function setAuthCookie() {
   // Create a simple auth token (in production, use JWT or session token)
-  const token = 'mock-auth-token-' + Date.now();
-  
+  const token = "mock-auth-token-" + Date.now();
+
   // Set cookie with 7 day expiry
-  document.cookie = `${AUTH_COOKIE_NAME}=${token}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
+  document.cookie = `${AUTH_COOKIE_NAME}=${token}; path=/; max-age=${
+    60 * 60 * 24 * 7
+  }; SameSite=Lax`;
 }
 
 /**
@@ -36,14 +40,16 @@ export function setAuthCookie() {
  * Returns null if not authenticated
  */
 export function getAuthCookie() {
-  if (typeof document === 'undefined') return null;
-  
-  const cookies = document.cookie.split(';');
-  const authCookie = cookies.find(cookie => cookie.trim().startsWith(`${AUTH_COOKIE_NAME}=`));
-  
+  if (typeof document === "undefined") return null;
+
+  const cookies = document.cookie.split(";");
+  const authCookie = cookies.find((cookie) =>
+    cookie.trim().startsWith(`${AUTH_COOKIE_NAME}=`)
+  );
+
   if (!authCookie) return null;
-  
-  return authCookie.split('=')[1];
+
+  return authCookie.split("=")[1];
 }
 
 /**

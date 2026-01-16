@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,12 +10,22 @@ import {
 } from "@/components/ui/card";
 import BookCard from "@/components/BookCard";
 import AnimatedHeroBackground from "@/components/AnimatedHeroBackground";
-import { Library, BookOpen, FileEdit, Lock } from "lucide-react";
+import { fetchBooks } from "@/lib/api";
 
 /**
  * Landing Page - 7 sections with modern design
  */
-export default function HomePage() {
+export default async function HomePage() {
+  // Fetch books from backend API for Features section
+  let featuredBooks = [];
+  try {
+    const books = await fetchBooks();
+    // Get first 4 books for Features section
+    featuredBooks = books.slice(0, 4);
+  } catch (error) {
+    console.error('Failed to fetch books for features:', error);
+    // Will show empty state if fetch fails
+  }
   return (
     <div className="min-h-screen">
       {/* Section 1: Hero */}
@@ -62,55 +73,37 @@ export default function HomePage() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Card className="border-border/50 hover:border-border transition-colors">
-              <CardHeader className="p-5">
-                <CardTitle className="text-base font-semibold mb-2 flex items-center gap-2">
-                  <Library className="h-5 w-5 text-primary" />
-                  Browse Catalog
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed">
-                  Explore a comprehensive collection of books with intuitive
-                  navigation
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-border/50 hover:border-border transition-colors">
-              <CardHeader className="p-5">
-                <CardTitle className="text-base font-semibold mb-2 flex items-center gap-2">
-                  <BookOpen className="h-5 w-5 text-primary" />
-                  Detailed Views
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed">
-                  Access complete book information including descriptions and
-                  metadata
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-border/50 hover:border-border transition-colors">
-              <CardHeader className="p-5">
-                <CardTitle className="text-base font-semibold mb-2 flex items-center gap-2">
-                  <FileEdit className="h-5 w-5 text-primary" />
-                  Easy Management
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed">
-                  Add and organize books seamlessly with a simple interface
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-border/50 hover:border-border transition-colors">
-              <CardHeader className="p-5">
-                <CardTitle className="text-base font-semibold mb-2 flex items-center gap-2">
-                  <Lock className="h-5 w-5 text-primary" />
-                  Secure Access
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed">
-                  Protected authentication system for managing your collection
-                </CardDescription>
-              </CardHeader>
-            </Card>
+            {featuredBooks.length > 0 ? (
+              featuredBooks.map((book) => (
+                <Link key={book.id} href={`/books/${book.id}`} className="block group">
+                  <Card className="h-full border-border/50 hover:border-border transition-colors overflow-hidden">
+                    {/* Book Cover Image */}
+                    <div className="relative w-full aspect-[3/4] bg-muted overflow-hidden">
+                      <Image
+                        src={book.coverImage}
+                        alt={book.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      />
+                    </div>
+                    {/* Book Info */}
+                    <CardHeader className="p-5">
+                      <CardTitle className="text-base font-semibold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                        {book.title}
+                      </CardTitle>
+                      <CardDescription className="text-sm leading-relaxed line-clamp-3">
+                        {book.description}
+                      </CardDescription>
+                    </CardHeader>
+                  </Card>
+                </Link>
+              ))
+            ) : (
+              <div className="col-span-full text-center text-muted-foreground py-8">
+                <p>No books available at the moment.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>

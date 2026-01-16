@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import BookCard from "@/components/BookCard";
+import AnimatedHeroBackground from "@/components/AnimatedHeroBackground";
 
 /**
  * Landing Page - 7 sections with modern design
@@ -17,7 +18,10 @@ export default function HomePage() {
     <div className="min-h-screen">
       {/* Section 1: Hero */}
       <section className="relative py-16 px-4 overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center">
+        {/* Animated Background with Mouse Interaction */}
+        <AnimatedHeroBackground />
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
             Your Digital{" "}

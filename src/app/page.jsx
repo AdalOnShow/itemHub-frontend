@@ -283,19 +283,72 @@ export default function HomePage() {
       </section>
 
       {/* Section 6: Testimonials */}
-      <section className="py-10 px-4 bg-muted/20">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-xl font-bold mb-6">Testimonials</h2>
-          <Card className="shadow-sm max-w-lg mx-auto">
-            <CardContent className="p-4">
-              <p className="italic text-muted-foreground text-sm">
-                &quot;Great platform for managing books!&quot;
-              </p>
-              <p className="text-xs text-muted-foreground mt-2 font-medium">
-                - Happy User
-              </p>
-            </CardContent>
-          </Card>
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+              What Our Users Say
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Trusted by book lovers everywhere
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="border-border/50">
+              <CardContent className="p-6">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  &quot;ItemHub makes organizing my book collection so easy. 
+                  The interface is clean and intuitive.&quot;
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
+                    S
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold">Sarah Chen</p>
+                    <p className="text-xs text-muted-foreground">Book Collector</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border/50">
+              <CardContent className="p-6">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  &quot;I love how simple it is to browse and add new books. 
+                  Perfect for managing my reading list.&quot;
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
+                    M
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold">Michael Torres</p>
+                    <p className="text-xs text-muted-foreground">Avid Reader</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border/50">
+              <CardContent className="p-6">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  &quot;A well-designed platform that does exactly what it promises. 
+                  Highly recommend!&quot;
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
+                    E
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold">Emily Parker</p>
+                    <p className="text-xs text-muted-foreground">Librarian</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 

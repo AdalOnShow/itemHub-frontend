@@ -353,15 +353,22 @@ export default function HomePage() {
       </section>
 
       {/* Section 7: Call to Action */}
-      <section className="py-10 px-4 bg-background">
+      <section className="py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-3">Get Started</h2>
-          <p className="text-muted-foreground mb-5 text-sm">
-            Login to start adding books to the catalog
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+            Start Building Your Library Today
+          </h2>
+          <p className="text-base text-muted-foreground mb-8 max-w-xl mx-auto">
+            Join our community of book lovers and create your personalized collection
           </p>
-          <Button size="default" asChild>
-            <Link href="/login">Login Now</Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <Button size="lg" asChild>
+              <Link href="/books">Browse Books</Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <Link href="/login">Get Started</Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>

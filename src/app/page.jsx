@@ -42,31 +42,58 @@ export default function HomePage() {
       </section>
 
       {/* Section 2: Features */}
-      <section className="py-10 px-4 bg-background">
+      <section className="py-16 px-4 bg-muted/30">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-xl font-bold mb-6 text-center">Features</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="shadow-sm">
-              <CardHeader className="p-4">
-                <CardTitle className="text-lg">Browse Catalog</CardTitle>
-                <CardDescription className="text-sm">
-                  Explore our comprehensive book collection
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+              Everything You Need
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+              A complete platform for managing your book collection with ease
+            </p>
+          </div>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Card className="border-border/50 hover:border-border transition-colors">
+              <CardHeader className="p-5">
+                <CardTitle className="text-base font-semibold mb-2">
+                  📚 Browse Catalog
+                </CardTitle>
+                <CardDescription className="text-sm leading-relaxed">
+                  Explore a comprehensive collection of books with intuitive navigation
                 </CardDescription>
               </CardHeader>
             </Card>
-            <Card className="shadow-sm">
-              <CardHeader className="p-4">
-                <CardTitle className="text-lg">Detailed Info</CardTitle>
-                <CardDescription className="text-sm">
-                  View complete book details and descriptions
+            
+            <Card className="border-border/50 hover:border-border transition-colors">
+              <CardHeader className="p-5">
+                <CardTitle className="text-base font-semibold mb-2">
+                  📖 Detailed Views
+                </CardTitle>
+                <CardDescription className="text-sm leading-relaxed">
+                  Access complete book information including descriptions and metadata
                 </CardDescription>
               </CardHeader>
             </Card>
-            <Card className="shadow-sm">
-              <CardHeader className="p-4">
-                <CardTitle className="text-lg">Add New Books</CardTitle>
-                <CardDescription className="text-sm">
-                  Authenticated users can contribute to the catalog
+            
+            <Card className="border-border/50 hover:border-border transition-colors">
+              <CardHeader className="p-5">
+                <CardTitle className="text-base font-semibold mb-2">
+                  ✏️ Easy Management
+                </CardTitle>
+                <CardDescription className="text-sm leading-relaxed">
+                  Add and organize books seamlessly with a simple interface
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            
+            <Card className="border-border/50 hover:border-border transition-colors">
+              <CardHeader className="p-5">
+                <CardTitle className="text-base font-semibold mb-2">
+                  🔒 Secure Access
+                </CardTitle>
+                <CardDescription className="text-sm leading-relaxed">
+                  Protected authentication system for managing your collection
                 </CardDescription>
               </CardHeader>
             </Card>

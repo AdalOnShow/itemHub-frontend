@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import BookCard from "@/components/BookCard";
 import AnimatedHeroBackground from "@/components/AnimatedHeroBackground";
+import { Library, BookOpen, FileEdit, Lock } from "lucide-react";
 
 /**
  * Landing Page - 7 sections with modern design
@@ -17,20 +18,22 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Section 1: Hero */}
-      <section className="relative py-16 px-4 overflow-hidden">
+      <section
+        className="relative py-20 px-4 overflow-hidden min-h-125 flex justify-center items-center"
+        id="hero-section"
+      >
         {/* Animated Background with Mouse Interaction */}
         <AnimatedHeroBackground />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-            Your Digital{" "}
-            <span className="text-primary">Book Collection</span>
+            Your Digital <span className="text-primary">Book Collection</span>
           </h1>
-          
+
           {/* Supporting Text */}
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Discover, manage, and organize your favorite books in one place. 
+            Discover, manage, and organize your favorite books in one place.
             Start building your personal library today.
           </p>
 
@@ -57,45 +60,51 @@ export default function HomePage() {
               A complete platform for managing your book collection with ease
             </p>
           </div>
-          
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <Card className="border-border/50 hover:border-border transition-colors">
               <CardHeader className="p-5">
-                <CardTitle className="text-base font-semibold mb-2">
-                  📚 Browse Catalog
+                <CardTitle className="text-base font-semibold mb-2 flex items-center gap-2">
+                  <Library className="h-5 w-5 text-primary" />
+                  Browse Catalog
                 </CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
-                  Explore a comprehensive collection of books with intuitive navigation
+                  Explore a comprehensive collection of books with intuitive
+                  navigation
                 </CardDescription>
               </CardHeader>
             </Card>
-            
+
             <Card className="border-border/50 hover:border-border transition-colors">
               <CardHeader className="p-5">
-                <CardTitle className="text-base font-semibold mb-2">
-                  📖 Detailed Views
+                <CardTitle className="text-base font-semibold mb-2 flex items-center gap-2">
+                  <BookOpen className="h-5 w-5 text-primary" />
+                  Detailed Views
                 </CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
-                  Access complete book information including descriptions and metadata
+                  Access complete book information including descriptions and
+                  metadata
                 </CardDescription>
               </CardHeader>
             </Card>
-            
+
             <Card className="border-border/50 hover:border-border transition-colors">
               <CardHeader className="p-5">
-                <CardTitle className="text-base font-semibold mb-2">
-                  ✏️ Easy Management
+                <CardTitle className="text-base font-semibold mb-2 flex items-center gap-2">
+                  <FileEdit className="h-5 w-5 text-primary" />
+                  Easy Management
                 </CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
                   Add and organize books seamlessly with a simple interface
                 </CardDescription>
               </CardHeader>
             </Card>
-            
+
             <Card className="border-border/50 hover:border-border transition-colors">
               <CardHeader className="p-5">
-                <CardTitle className="text-base font-semibold mb-2">
-                  🔒 Secure Access
+                <CardTitle className="text-base font-semibold mb-2 flex items-center gap-2">
+                  <Lock className="h-5 w-5 text-primary" />
+                  Secure Access
                 </CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
                   Protected authentication system for managing your collection
@@ -117,7 +126,7 @@ export default function HomePage() {
               Get started in three simple steps
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {/* Step 1 */}
             <div className="relative flex flex-col items-center text-center">
@@ -126,10 +135,11 @@ export default function HomePage() {
               </div>
               <h3 className="text-base font-semibold mb-2">Browse Books</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Explore our collection of books. No account needed to view the catalog.
+                Explore our collection of books. No account needed to view the
+                catalog.
               </p>
             </div>
-            
+
             {/* Step 2 */}
             <div className="relative flex flex-col items-center text-center">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold text-lg">
@@ -140,7 +150,7 @@ export default function HomePage() {
                 Click any book to see complete information and descriptions.
               </p>
             </div>
-            
+
             {/* Step 3 */}
             <div className="relative flex flex-col items-center text-center">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold text-lg">
@@ -165,10 +175,10 @@ export default function HomePage() {
                 Why Choose ItemHub?
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                Built for book lovers and collectors, ItemHub provides a 
-                streamlined experience for managing your digital library. 
-                Whether you&apos;re browsing or building your collection, we&apos;ve 
-                made it simple and enjoyable.
+                Built for book lovers and collectors, ItemHub provides a
+                streamlined experience for managing your digital library.
+                Whether you&apos;re browsing or building your collection,
+                we&apos;ve made it simple and enjoyable.
               </p>
               <Button variant="outline" size="default" asChild>
                 <Link href="/books">Explore Now</Link>
@@ -183,7 +193,9 @@ export default function HomePage() {
                     ✓
                   </div>
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">Intuitive Interface</h3>
+                    <h3 className="font-semibold text-sm mb-1">
+                      Intuitive Interface
+                    </h3>
                     <p className="text-sm text-muted-foreground">
                       Clean design that&apos;s easy to navigate for everyone
                     </p>
@@ -197,7 +209,9 @@ export default function HomePage() {
                     ✓
                   </div>
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">Secure & Protected</h3>
+                    <h3 className="font-semibold text-sm mb-1">
+                      Secure & Protected
+                    </h3>
                     <p className="text-sm text-muted-foreground">
                       Authentication system keeps your data safe
                     </p>
@@ -211,7 +225,9 @@ export default function HomePage() {
                     ✓
                   </div>
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">Fast & Responsive</h3>
+                    <h3 className="font-semibold text-sm mb-1">
+                      Fast & Responsive
+                    </h3>
                     <p className="text-sm text-muted-foreground">
                       Built with modern tech for optimal performance
                     </p>
@@ -234,14 +250,15 @@ export default function HomePage() {
               Explore our curated collection
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <BookCard
               book={{
                 id: 1,
                 title: "The Great Gatsby",
                 author: "F. Scott Fitzgerald",
-                description: "A classic American novel set in the Jazz Age, exploring themes of decadence, idealism, and social upheaval.",
+                description:
+                  "A classic American novel set in the Jazz Age, exploring themes of decadence, idealism, and social upheaval.",
                 price: 12.99,
                 coverImage: "https://covers.openlibrary.org/b/id/7883743-L.jpg",
               }}
@@ -251,7 +268,8 @@ export default function HomePage() {
                 id: 2,
                 title: "To Kill a Mockingbird",
                 author: "Harper Lee",
-                description: "A gripping tale of racial injustice and childhood innocence in the Deep South during the 1930s.",
+                description:
+                  "A gripping tale of racial injustice and childhood innocence in the Deep South during the 1930s.",
                 price: 14.99,
                 coverImage: "https://covers.openlibrary.org/b/id/8228691-L.jpg",
               }}
@@ -261,7 +279,8 @@ export default function HomePage() {
                 id: 3,
                 title: "1984",
                 author: "George Orwell",
-                description: "A dystopian social science fiction novel exploring themes of totalitarianism and surveillance.",
+                description:
+                  "A dystopian social science fiction novel exploring themes of totalitarianism and surveillance.",
                 price: 13.99,
                 coverImage: "https://covers.openlibrary.org/b/id/7222246-L.jpg",
               }}
@@ -271,7 +290,8 @@ export default function HomePage() {
                 id: 4,
                 title: "Pride and Prejudice",
                 author: "Jane Austen",
-                description: "A romantic novel of manners that critiques the British landed gentry at the end of the 18th century.",
+                description:
+                  "A romantic novel of manners that critiques the British landed gentry at the end of the 18th century.",
                 price: 11.99,
                 coverImage: "https://covers.openlibrary.org/b/id/8529558-L.jpg",
               }}
@@ -297,13 +317,13 @@ export default function HomePage() {
               Trusted by book lovers everywhere
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="border-border/50">
               <CardContent className="p-6">
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  &quot;ItemHub makes organizing my book collection so easy. 
-                  The interface is clean and intuitive.&quot;
+                  &quot;ItemHub makes organizing my book collection so easy. The
+                  interface is clean and intuitive.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
@@ -311,7 +331,9 @@ export default function HomePage() {
                   </div>
                   <div>
                     <p className="text-sm font-semibold">Sarah Chen</p>
-                    <p className="text-xs text-muted-foreground">Book Collector</p>
+                    <p className="text-xs text-muted-foreground">
+                      Book Collector
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -320,7 +342,7 @@ export default function HomePage() {
             <Card className="border-border/50">
               <CardContent className="p-6">
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  &quot;I love how simple it is to browse and add new books. 
+                  &quot;I love how simple it is to browse and add new books.
                   Perfect for managing my reading list.&quot;
                 </p>
                 <div className="flex items-center gap-3">
@@ -338,8 +360,8 @@ export default function HomePage() {
             <Card className="border-border/50">
               <CardContent className="p-6">
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  &quot;A well-designed platform that does exactly what it promises. 
-                  Highly recommend!&quot;
+                  &quot;A well-designed platform that does exactly what it
+                  promises. Highly recommend!&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
@@ -363,7 +385,8 @@ export default function HomePage() {
             Start Building Your Library Today
           </h2>
           <p className="text-base text-muted-foreground mb-8 max-w-xl mx-auto">
-            Join our community of book lovers and create your personalized collection
+            Join our community of book lovers and create your personalized
+            collection
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Button size="lg" asChild>

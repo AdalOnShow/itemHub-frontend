@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { addBook } from "@/lib/api";
+import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +25,7 @@ import { ChevronLeft } from "lucide-react";
  */
 export default function AddBookPage() {
   const router = useRouter();
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -56,6 +58,13 @@ export default function AddBookPage() {
         price: parseFloat(formData.price),
         coverImage: formData.coverImage || undefined,
       });
+
+      // Show success toast
+      toast({
+        title: "Book added successfully",
+        description: `${formData.title} has been added to the catalog.`,
+      });
+
       router.push("/books");
     } catch (err) {
       setError("Failed to add book. Please try again.");

@@ -4,6 +4,7 @@
 
 ### Your Digital Book Collection management platform
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://itemhub-frontend.vercel.app/)
 [![Frontend Repo](https://img.shields.io/badge/GitHub-Frontend-blue?style=for-the-badge&logo=github)](https://github.com/AdalOnShow/itemHub-frontend)
 [![Backend Repo](https://img.shields.io/badge/GitHub-Backend-blue?style=for-the-badge&logo=github)](https://github.com/AdalOnShow/ItemHub-backend)
 
